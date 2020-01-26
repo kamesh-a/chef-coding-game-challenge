@@ -6,6 +6,9 @@
   "author": "kamesh.arumugam@gmail.com",
   "license": "MIT",
   "private": false,
+  "engines" : { 
+    "node" : ">=10.18.1" 
+  },
   "dependencies": {},
   "scrips":{
     "jest":"jest test/*.js"
