@@ -53,7 +53,7 @@ function createSideDish(inputs, totalDays, limit) {
         /** 
          * Find output string contains any 60% ingridient or else get more,
          * either FIBER OR FAT OR CARB
-         */ 
+         */
         if (isSufficient) {
             if (inHouseItems.length > limit) {
                 /* 
@@ -64,7 +64,10 @@ function createSideDish(inputs, totalDays, limit) {
                 inHouseItems = [...stock];
                 finalOutput += `${dishesMade}${madeDish}`
                 dishesMade = '';
-            } else if (inHouseItems.length === limit) {
+            } else if (inHouseItems.length < limit) {
+                /* As items are less in the house, we have add wait as we wait for one more day */
+                dishesMade = `-${dishesMade}`;
+            } else {
                 /* 
                  * Items and 60% of ingridient is matching, clearing inHouseStock which was used
                  * make dish as there are no unused stock.
@@ -73,10 +76,7 @@ function createSideDish(inputs, totalDays, limit) {
                 finalOutput += `${dishesMade}`
                 dishesMade = '';
                 inHouseItems = [];
-            } else (inHouseItems.length < limit) {
-                /* As items are less in the house, we have add wait as we wait for one more day */
-                dishesMade = `-${dishesMade}`;
-            } 
+            }
         } else {
             dishesMade = `-${dishesMade}`
         }
