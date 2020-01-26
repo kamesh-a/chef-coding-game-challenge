@@ -11,7 +11,7 @@
   },
   "dependencies": {},
   "scrips": {
-    "test": "jest"
+    "test": "jest __tests__/*.js"
   },
   "devDependencies": {
     "jest": "^25.1.0"
