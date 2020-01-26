@@ -1,5 +1,4 @@
 const { makeDish } = require('../src/chefCodingGame');
-console.log('WTF')
 describe('Chef dish Challenge from codingame', () => {
    test('case 1: ', () => {
       const inputs = 'FATOil FIBERSpinach CARBRice FATCheese FIBERBeans'.split(' ');
