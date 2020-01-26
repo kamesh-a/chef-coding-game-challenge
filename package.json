@@ -6,12 +6,12 @@
   "author": "kamesh.arumugam@gmail.com",
   "license": "MIT",
   "private": false,
-  "engines" : { 
-    "node" : ">=10.18.1" 
+  "engines": {
+    "node": ">=12.14.1"
   },
   "dependencies": {},
-  "scrips":{
-    "test":"jest test/*.js"
+  "scrips": {
+    "test": "jest"
   },
   "devDependencies": {
     "jest": "^25.1.0"
