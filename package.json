@@ -11,7 +11,7 @@
   },
   "dependencies": {},
   "scrips": {
-    "test": "jest __tests__/*.js"
+    "test": "jest ./__tests__/chefCodingGame.test.js"
   },
   "devDependencies": {
     "jest": "^25.1.0"
