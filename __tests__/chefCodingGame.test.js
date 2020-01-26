@@ -25,7 +25,7 @@ describe('Chef dish Challenge from codingame', () => {
 
    test('Inputs Name should start with FIBER, FAT, CARB and condition should be met, 6 >= Name <= 20 ', () => {
       const inputs = 'FATOil FIBERSpinach FATno CARBRice FATCheese FIBERBeans'.split(' ');
-      const expectedOutput = '---FATOil:FIBERSpinach:FATCheese-';
+      const expectedOutput = '----FATOil:FIBERSpinach:FATCheese-';
       const totalDays = 6;
       const maxIngCount = 3;
       const output = makeDish(inputs, totalDays, maxIngCount);
