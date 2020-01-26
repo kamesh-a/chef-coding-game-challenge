@@ -10,8 +10,8 @@
     "node": ">=12.14.1"
   },
   "dependencies": {},
-  "scrips": {
-    "test": "jest ./__tests__/chefCodingGame.test.js"
+  "scripts": {
+    "test": "jest"
   },
   "devDependencies": {
     "jest": "^25.1.0"
