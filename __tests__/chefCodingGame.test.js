@@ -1,5 +1,37 @@
 const { makeDish } = require('../src/chefCodingGame');
 describe('Chef dish Challenge from codingame', () => {
+
+   test('No of days should be 1<= days <= 20 : ', () => {
+      const totalDays = 0;
+      const maxIngCount = 3;
+      const output = makeDish(null, totalDays, maxIngCount);
+      expect(undefined).toBe(output);
+   });
+
+   test('No of ingridient Count should be 1<= ingridient <= 20 : ', () => {
+      const totalDays = 5;
+      const maxIngCount = 21;
+      const output = makeDish(null, totalDays, maxIngCount);
+      expect(undefined).toBe(output);
+   });
+   
+   test('Inputs length should be equal to totalNumberOfDays : ', () => {
+      const totalDays = 5;
+      const maxIngCount = 21;
+      const inputs = 'A B C D';
+      const output = makeDish(inputs, totalDays, maxIngCount);
+      expect(undefined).toBe(output);
+   });
+
+   test('Inputs Name should start with FIBER, FAT, CARB and condition should be met, 6 >= Name <= 20 ', () => {
+      const inputs = 'FATOil FIBERSpinach FATno CARBRice FATCheese FIBERBeans'.split(' ');
+      const expectedOutput = '---FATOil:FIBERSpinach:FATCheese-';
+      const totalDays = 5;
+      const maxIngCount = 3;
+      const output = makeDish(inputs, totalDays, maxIngCount);
+      expect(expectedOutput).toBe(output);
+   });
+
    test('case 1: ', () => {
       const inputs = 'FATOil FIBERSpinach CARBRice FATCheese FIBERBeans'.split(' ');
       const expectedOutput = '---FATOil:FIBERSpinach:FATCheese-';

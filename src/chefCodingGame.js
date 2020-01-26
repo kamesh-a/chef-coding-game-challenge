@@ -1,3 +1,45 @@
+const INGRIDIENT_MAX_COUNT = 20;
+const INGRIDIENT_MIN_COUNT = 1;
+const DAYS_MAX_COUNT = 20;
+const DAYS_MIN_COUNT = 1;
+const INGRIDIENT_ITEM_CATEGORY = ['FAT', 'FIBER', 'CARB'];
+
+function isInteger(no) {
+    try {
+        const num = no && parseInt(no);
+        return !isNaN(num) && num;
+    } catch (e) { }
+}
+
+function isIngridientInputNumberValid(noOfIngridient) {
+    const no = isInteger(noOfIngridient);
+    if (no && no >= INGRIDIENT_MIN_COUNT && no <= INGRIDIENT_MAX_COUNT) {
+        return true;
+    }
+}
+
+function isNoOfDayInputNumberValid(noOfDays) {
+    const no = isInteger(noOfDays);
+    if (no && no >= DAYS_MIN_COUNT && no <= DAYS_MAX_COUNT) {
+        return true;
+    }
+}
+
+function isIngridientNameValid(ingridientName) {
+    if (ingridientName && typeof ingridientName === 'string') {
+        const ingridientLength = ingridientName.length;
+        const isIngridientNameIsProper = ingridientLength >= 6 && ingridientLength <= 20
+        if (isIngridientNameIsProper) {
+            for (let i = 0; i < INGRIDIENT_ITEM_CATEGORY.length; i++) {
+                let ingridientType = INGRIDIENT_ITEM_CATEGORY[i];
+                if (ingridientName.indexOf(ingridientType) !== -1) {
+                    return true;
+                }
+            }
+        }
+    }
+}
+
 function getNumberOfItemsNeededInSameCategory(totalNumberOfIngridientCategory) {
     const x = (60 * totalNumberOfIngridientCategory) / 100;
     return Math.ceil(x);
@@ -39,6 +81,20 @@ function removeItemFromArr(iArr, limit, type) {
 }
 
 function createSideDish(inputs, totalDays, limit) {
+    /**
+     * If days or ingridient, should follow 1 <= N <= 20;
+     */
+    if (!isNoOfDayInputNumberValid(totalDays) || !isIngridientInputNumberValid(limit)) {
+        return;
+    }
+
+    /**
+     * Total number of days should be equal to items
+     */
+    if (inputs && inputs.length !== totalDays) {
+        return;
+    }
+
     const minItemCount = getNumberOfItemsNeededInSameCategory(limit);
     let finalOutput = '';
     // The loop should run the number of days the chef will fetch his
@@ -46,8 +102,15 @@ function createSideDish(inputs, totalDays, limit) {
     let inHouseItems = [];
     let dishesMade = '';
     for (i = 0; i < totalDays; i++) {
-
-        inHouseItems.push(inputs[i]);
+        const ingridientName = inputs[i];
+        
+        /**
+         * Ingridient name should follow this condition
+         * 6 >= IngridientName <= 20
+         */
+        if (isIngridientNameValid(ingridientName)) {
+            inHouseItems.push(ingridientName);
+        }
 
         const [isSufficient, matchType] = isIngridientAreSuffient(inHouseItems, minItemCount);
         /** 
