@@ -22,7 +22,6 @@ function isIngridientAreSuffient(inHouseArr, minItemCount) {
 }
 
 function pushToStockList(item, stock) {
-    console.log(`Pushed item into stack ${item}`);
     stock.unshift(item);
 }
 
@@ -32,7 +31,6 @@ function removeItemFromArr(iArr, limit, type) {
     while (index && iArr.length > limit) {
         if (iArr[index] && iArr[index].indexOf(type) === -1) {
             const [removedItem] = iArr.splice(index, 1);
-            console.log(`Removed items: ${removedItem} from stack ${iArr.join(',')}`);
             pushToStockList(removedItem, stock);
         }
         --index;
@@ -52,22 +50,20 @@ function createSideDish(inputs, totalDays, limit) {
         inHouseItems.push(inputs[i]);
 
         const [isSufficient, matchType] = isIngridientAreSuffient(inHouseItems, minItemCount);
-        console.log(`items in house passed${isSufficient ? `[${matchType}]` : ''} = ${isSufficient} `, inHouseItems);
-        // find temp string contains any 60% or else get more
-        // either FIBER OR FAT OR CARB
+        /** 
+         * Find output string contains any 60% ingridient or else get more,
+         * either FIBER OR FAT OR CARB
+         */ 
         if (isSufficient) {
             if (inHouseItems.length > limit) {
                 /* 
                  * Items and 60% of ingridient is matching, but we have more items in stock
                  * remove the items which were used and keep items in stock which are unused.
                 */
-                console.log(`Before removing items : `, inHouseItems);
                 const [stock, madeDish] = removeItemFromArr(inHouseItems, limit, matchType);
                 inHouseItems = [...stock];
-                console.log(`After removing items : `, inHouseItems);
                 finalOutput += `${dishesMade}${madeDish}`
                 dishesMade = '';
-                console.log(`Intermidiate > result: ${finalOutput}`);
             } else if (inHouseItems.length === limit) {
                 /* 
                  * Items and 60% of ingridient is matching, clearing inHouseStock which was used
@@ -77,34 +73,16 @@ function createSideDish(inputs, totalDays, limit) {
                 finalOutput += `${dishesMade}`
                 dishesMade = '';
                 inHouseItems = [];
-                console.log(`Intermidiate == result: ${finalOutput}`);
-            } else if (inHouseItems.length < limit) {
+            } else (inHouseItems.length < limit) {
                 /* As items are less in the house, we have add wait as we wait for one more day */
                 dishesMade = `-${dishesMade}`;
-                console.log(`Adding DASH : ${dishesMade}`)
-            } else {
-                console.log(` ******************** IMP ******************** `);
-            }
+            } 
         } else {
             dishesMade = `-${dishesMade}`
-            console.log(`Adding DASH : ${dishesMade}`)
         }
     }
 
     finalOutput += `${dishesMade}`;
-
-    // console.log(`
-            
-    //         Input        : ${inputs.join(' ')}
-    //         DayNeeded    : ${totalDays}
-    //         MaxIngridient: ${limit}
-    //         MinItemsNeed : ${minItemCount}
-    //         Expected     : ${expectedOutput}
-    //         Output       : ${finalOutput}
-    //         %cExpected === Ouput: ${ expectedOutput === finalOutput ? 'Test case PASSED' : 'Test case FAILED'}
-
-    //     `, `${expectedOutput === finalOutput ? 'color:green' : 'color:red'} `);
-
     return finalOutput;
 }
 
