@@ -1,0 +1,16 @@
+{
+  "name": "chef-coding-game",
+  "version": "0.0.1",
+  "description": "CodingGame challenge",
+  "main": "index.js",
+  "author": "kamesh.arumugam@gmail.com",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {},
+  "scrips":{
+    "jest":"jest test/*.js"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
+}
