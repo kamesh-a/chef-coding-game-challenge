@@ -93,17 +93,17 @@ function createSideDish(inputs, totalDays, limit) {
 
     finalOutput += `${dishesMade}`;
 
-    console.log(`
+    // console.log(`
             
-            Input        : ${inputs.join(' ')}
-            DayNeeded    : ${totalDays}
-            MaxIngridient: ${limit}
-            MinItemsNeed : ${minItemCount}
-            Expected     : ${expectedOutput}
-            Output       : ${finalOutput}
-            %cExpected === Ouput: ${ expectedOutput === finalOutput ? 'Test case PASSED' : 'Test case FAILED'}
+    //         Input        : ${inputs.join(' ')}
+    //         DayNeeded    : ${totalDays}
+    //         MaxIngridient: ${limit}
+    //         MinItemsNeed : ${minItemCount}
+    //         Expected     : ${expectedOutput}
+    //         Output       : ${finalOutput}
+    //         %cExpected === Ouput: ${ expectedOutput === finalOutput ? 'Test case PASSED' : 'Test case FAILED'}
 
-        `, `${expectedOutput === finalOutput ? 'color:green' : 'color:red'} `);
+    //     `, `${expectedOutput === finalOutput ? 'color:green' : 'color:red'} `);
 
     return finalOutput;
 }
